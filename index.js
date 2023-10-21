@@ -5,7 +5,7 @@ const PORT = 3000;
 
 app.get("/auth/user", (req, res) => {
   const currentDate = new Date();
-  console.log(`reached here at ${currentDate}`);
+  console.log(`reached user auth at ${currentDate}`);
   if (req.headers["x-auth-header"] === "allow") {
     return res.status(200).json({ message: "allowed" });
   }
@@ -14,6 +14,7 @@ app.get("/auth/user", (req, res) => {
 
 app.get("/auth/admin", (req, res) => {
   const currentDate = new Date();
+  console.log(`reached admin auth at ${currentDate}`);
   if (req.headers["x-auth-header"] === "allow") {
     return res.status(200).json({ message: "allowed" });
   }
