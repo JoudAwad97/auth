@@ -20,6 +20,9 @@ function adminAuthCheck(req, res) {
 }
 
 app.post("/auth/general", (req, res) => {
+  const currentDate = new Date();
+  console.log(`reached user auth at ${currentDate}`);
+
   const originalPath = req.body.attributes.request.http.path;
 
   if (originalPath.includes("/admin")) {
