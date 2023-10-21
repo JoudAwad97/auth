@@ -10,7 +10,7 @@ app.get("/auth/user", (req, res) => {
   return res.status(401).json({ message: "not allowed to enter" });
 });
 
-app.get("/auth-admin", (req, res) => {
+app.get("/auth/admin", (req, res) => {
   if (req.headers["x-auth-header"] === "allow") {
     return res.status(200).json({ message: "allowed" });
   }
