@@ -3,8 +3,11 @@ const express = require("express");
 const app = express();
 const PORT = 3000;
 
+app.use(express.json());
+
 function userAuthCheck(req, res) {
-  // Your existing logic for /auth/user
+  const currentDate = new Date();
+  console.log(`reached user auth at ${currentDate}`);
   if (req.headers["x-auth-header"] === "allow") {
     return res.status(200).json({ message: "allowed" });
   }
@@ -12,17 +15,15 @@ function userAuthCheck(req, res) {
 }
 
 function adminAuthCheck(req, res) {
-  // Your existing logic for /auth/admin
+  const currentDate = new Date();
+  console.log(`reached admin auth at ${currentDate}`);
   if (req.headers["x-auth-header"] === "allow") {
     return res.status(200).json({ message: "allowed" });
   }
   return res.status(401).json({ message: "not allowed to enter" });
 }
 
-app.post("/auth/general", (req, res) => {
-  const currentDate = new Date();
-  console.log(`reached user auth at ${currentDate}`);
-
+app.post("/", (req, res) => {
   const originalPath = req.body.attributes.request.http.path;
 
   if (originalPath.includes("/admin")) {
